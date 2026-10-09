@@ -1,0 +1,25 @@
+
+# Gemini API integration
+langchain-google-genai
+
+# LangChain core and agent orchestration
+langchain
+langchain-core
+langchain-community
+
+# Tavily web search
+tavily-python
+langchain-tavily
+
+# Web scraping
+beautifulsoup4
+requests
+
+# Environment variable management
+python-dotenv
+
+# Optional: useful for API/backend development
+fastapi
+uvicorn
+
+
