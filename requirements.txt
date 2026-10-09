@@ -21,5 +21,6 @@ python-dotenv
 # Optional: useful for API/backend development
 fastapi
 uvicorn
-
+streamlit
+reportlab
 

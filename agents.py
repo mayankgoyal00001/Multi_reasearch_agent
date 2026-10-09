@@ -11,6 +11,7 @@ load_dotenv()
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-3.5-flash-lite",
+    google_api_key=os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY"),
     temperature=0,
     timeout=30,
     max_retries=1,
@@ -82,8 +83,10 @@ writer_prompt = ChatPromptTemplate.from_messages([
         9. If sources disagree, explain the disagreement instead
            of silently choosing one.
         10. Identify insufficient evidence and missing information.
-        11. Preserve source URLs so claims can be checked.
-        12. Do not claim that you independently verified sources
+        11. Cite supplied sources with their [number] where relevant.
+        12. Preserve source URLs in the references section so claims
+            can be checked. Do not invent source titles or URLs.
+        13. Do not claim that you independently verified sources
             unless the supplied evidence supports that claim.
 
         Your goal is to produce the strongest report possible
@@ -235,5 +238,4 @@ writer_runnable = writer_prompt | llm | StrOutputParser()
 
 # Runnable for the Critic Agent
 critic_runnable = critic_prompt | llm | StrOutputParser()
-
 
